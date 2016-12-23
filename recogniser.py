@@ -35,6 +35,7 @@ class Recogniser(sr.Recognizer, sr.Microphone, Requests, intentSystemList):
 		text = text.split(' ')
 
 		question_list = ['how', 'what', 'where']
+		task_list = ['generate', 'do', 'create']
 
 		if text[0] == 'open':
 			self.answer = self.request.runTask(text[1:])
@@ -43,10 +44,8 @@ class Recogniser(sr.Recognizer, sr.Microphone, Requests, intentSystemList):
 		elif text[0] in question_list:
 			print self.response
 			self.answer = self.request.questionAnalyser(text[0:])
-
-
-	def userIntent(self):
-		pass
+		elif text[0] in task_list:
+			self.answer = self.request.taskAnalyser(text[0:])
 
 	def say(self):
 		return os.system("say '%s'"%(self.answer))

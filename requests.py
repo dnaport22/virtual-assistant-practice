@@ -14,6 +14,7 @@ class Requests(WordMath):
 		self.maths_right = None
 		self.maths_operator_words = {'plus':'+', 'minus':'-', 'multiply':'x'}
 		self.maths_operators = {'+':operator.add, '-': operator.sub, 'x':operator.mul}
+		self.task_list = ['qr']
 
 	def runTask(self, data):
 		for txt in data:
@@ -29,6 +30,13 @@ class Requests(WordMath):
 		webbrowser.get(CHROME_PATH).open(url)
 
 		return "Searching"
+
+	def taskAnalyser(self, task):
+		"""
+		@TODO: check available tasks from the list,
+					 clean text and call method for requested task.
+		"""
+		pass
 
 	def questionAnalyser(self, question):
 		nlp_words = [i for i in question if i not in self.stop]
