@@ -12,6 +12,7 @@ class Recogniser(sr.Recognizer, sr.Microphone, Requests, intentSystemList):
 		self.intentList = intentSystemList()
 		self.audio = None
 		self.response = None
+		self.answer = None
 
 	def listen(self, listen_freq=0):
 		while listen_freq == 0:
@@ -29,18 +30,25 @@ class Recogniser(sr.Recognizer, sr.Microphone, Requests, intentSystemList):
 		return self.response
 
 	def understandResponse(self):
-		text = self.response.split(' ')
+		text = self.response.lower()
+		text = text.split(' ')
 
-		if text[0] == 'open' or text[0] == 'Open':
-			self.request.runTask(text[1:])
-		elif text[0] == 'search' or text[0] == 'Search':
-			self.request.webSearch(text[1:])
+		question_list = ['how', 'what', 'where']
+
+		if text[0] == 'open':
+			self.answer = self.request.runTask(text[1:])
+		elif text[0] == 'search':
+			self.answer = self.request.webSearch(text[1:])
+		elif text[0] in question_list:
+			print self.response
+			self.answer = self.request.questionAnalyser(text[0:])
+
 
 	def userIntent(self):
 		pass
 
 	def say(self):
-		return os.system("say 'Running your command %s'"%(self.response))
+		return os.system("say '%s'"%(self.answer))
 
 
 
