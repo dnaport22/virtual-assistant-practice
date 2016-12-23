@@ -2,7 +2,8 @@ import os
 import webbrowser
 import operator
 from nltk.corpus import stopwords
-from wordmath import WordMath
+from features.wordmath import WordMath
+from features.qrcodegenrator import QrcodeGenerator
 
 class Requests(WordMath):
 	def __init__ (self):
@@ -55,6 +56,8 @@ class Requests(WordMath):
 		y = int(self.maths_right)
 		op = self.maths_operators[self.maths_operation]
 		return op(x,y)
+
+
 		
 
 		

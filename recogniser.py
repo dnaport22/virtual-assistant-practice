@@ -25,6 +25,7 @@ class Recogniser(sr.Recognizer, sr.Microphone, Requests, intentSystemList):
 			return True
 
 	def recogniseAudio(self):
+		print 'Recognising...'
 		self.response = self.recogniser.recognize_google(self.audio)
 
 		return self.response
