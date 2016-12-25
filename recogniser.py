@@ -1,6 +1,6 @@
 import speech_recognition as sr
 from requests import Requests
-from intentSystemList import intentSystemList
+from features.intentSystemList import intentSystemList
 import yaml
 import os
 
@@ -48,6 +48,7 @@ class Recogniser(sr.Recognizer, sr.Microphone, Requests, intentSystemList):
 			self.answer = self.request.taskAnalyser(text[0:])
 
 	def say(self):
+		print self.answer
 		return os.system("say '%s'"%(self.answer))
 
 

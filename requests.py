@@ -5,7 +5,7 @@ from nltk.corpus import stopwords
 from features.wordmath import WordMath
 from features.qrcodegenrator import QrcodeGenerator
 
-class Requests(WordMath):
+class Requests(WordMath, QrcodeGenerator):
 	def __init__ (self):
 		self.maths = WordMath()
 		self.stop = set(stopwords.words('english'))
@@ -32,11 +32,17 @@ class Requests(WordMath):
 		return "Searching"
 
 	def taskAnalyser(self, task):
-		"""
-		@TODO: check available tasks from the list,
-					 clean text and call method for requested task.
-		"""
-		pass
+		nlp_words = [i for i in task if i not in self.stop]
+		words = ''.join(nlp_words)
+		if 'qr' in words:
+			os.system("say 'Enter url please'")
+			qr_url = input('Enter url please: ')
+			qr = QrcodeGenerator([qr_url], text_overlay=True)
+			qr.generateQrCode()
+
+			return 'Qr code is generated' 
+		else:
+			return 'Sorry I am not able to do that'
 
 	def questionAnalyser(self, question):
 		nlp_words = [i for i in question if i not in self.stop]
