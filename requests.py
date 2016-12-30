@@ -53,7 +53,7 @@ class Requests(WordMath, QrcodeGenerator):
 				self.maths_operation = ops
 
 		self.maths_left = words[0].strip()
-		self.maths_right = words[2].strip()
+		self.maths_right = words[2:].strip()
 
 		# for ops in (self.maths_operator_words):
 		# 	if ops in words:
