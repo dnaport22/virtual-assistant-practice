@@ -1,6 +1,7 @@
 import speech_recognition as sr
 from requests import Requests
 from features.intentSystemList import intentSystemList
+from features.dodgybot import main
 import yaml
 import os
 
@@ -46,10 +47,16 @@ class Recogniser(sr.Recognizer, sr.Microphone, Requests, intentSystemList):
 			self.answer = self.request.questionAnalyser(text[0:])
 		elif text[0] in task_list:
 			self.answer = self.request.taskAnalyser(text[0:])
+		elif text[0] == 'chat':
+			os.system('cd features/dodgybot && python main.py chat')
+		elif text[0] == 'talk':
+			os.system('cd features/dodgybot && python main.py talk')
 
 	def say(self):
-		print self.answer
-		return os.system("say '%s'"%(self.answer))
+		if self.answer != None:
+			print self.answer
+			return os.system("say '%s'"%(self.answer))
+		pass
 
 
 
