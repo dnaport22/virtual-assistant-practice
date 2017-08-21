@@ -11,9 +11,9 @@ class intentSystemList():
 			 ||----------------------------------------------------------------------------------||
 			 ||  To generate qr code: SAY, Generate qr code                                      ||
 			 ||----------------------------------------------------------------------------------||
-			 ||  To generate chat with DodgyBot: SAY, Chat with dodgy bot                        ||
+			 ||  To chat with DodgyBot: SAY, Chat with dodgy bot                                 ||
 			 ||----------------------------------------------------------------------------------||
-			 ||  To generate talk with DodgyBot: SAY, Talk with dodgy bot                        ||
+			 ||  To talk with DodgyBot: SAY, Talk with dodgy bot                                 ||
 			 + ================================================================================== +
 		"""
 
